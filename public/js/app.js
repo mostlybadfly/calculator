@@ -13,7 +13,7 @@ function init(){
 
   function evalResult() {
     var result = document.getElementById("result");
-    result.value = eval(result.value);
+    result.value = result.value ? eval(result.value) : '';
   }
 
   function clearBox() {
