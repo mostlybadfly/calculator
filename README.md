@@ -1,1 +1,1 @@
-test app for javascript tutorials
+A calculator app using pure JavaScript
