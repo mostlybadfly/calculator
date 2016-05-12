@@ -2,11 +2,17 @@ document.addEventListener('DOMContentLoaded', init, false);
 
 function init(){
   function appendNum() {
+    if (clearOnInput==true) {
+      var result = document.getElementById("result");
+      result.value = "";
+    }
     var result = document.getElementById("result");
     result.value = (result.value + this.innerHTML);
+    clearOnInput = false;
   }
 
   function performOp() {
+    clearOnInput = false;
     var result = document.getElementById("result");
     result.value = (result.value + this.innerHTML);
   }
@@ -14,6 +20,7 @@ function init(){
   function evalResult() {
     var result = document.getElementById("result");
     result.value = result.value ? eval(result.value) : '';
+    clearOnInput = true;
   }
 
   function clearBox() {
@@ -36,6 +43,8 @@ function init(){
   var equalButton = document.getElementById("equalsbtn");
 
   equalButton.addEventListener("click", evalResult, false);
+
+  var clearOnInput = false;
 
   var clearButton = document.getElementById("clearbtn");
 
