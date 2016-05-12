@@ -3,4 +3,4 @@
 
 
 ####Known Bugs
-- After a calculation: textfield is does not clear before appending a new number.
+- The input field should be parsed to calculate the result rather than use eval().
