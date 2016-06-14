@@ -10,15 +10,15 @@ var operation = {
 }
 
   function appendNum() {
-    if (clearOnInput==true) {
+    if (!numPressed) {
       result.value = "";
     }
     result.value = (result.value + this.innerHTML);
-    clearOnInput = false;
+    numPressed = true;
   }
 
   function performOp() {
-    if (result.value!='' && !clearOnInput) {
+    if (result.value!='' && numPressed) {
       if (numStack.length == 0) {
         numStack.push(result.value);
         opStack.push(this.innerHTML);
@@ -28,16 +28,16 @@ var operation = {
         opStack.push(this.innerHTML);
       }
     }
-    clearOnInput = true;
+    numPressed = false;
   }
 
   function evalResult() {
-    if (result.value!='' && !clearOnInput) {
+    if (result.value!='' && numPressed) {
       if (numStack.length==1) {
         result.value = operation[opStack.pop()](Number(numStack.pop()), Number(result.value));
       }
     }
-    clearOnInput = true;
+    numPressed = false;
   }
 
   function clearBox() {
@@ -65,7 +65,7 @@ function init(){
 
   equalButton.addEventListener("click", evalResult, false);
 
-  clearOnInput = false;
+  numPressed = false;
 
   var clearButton = document.getElementById("clearbtn");
 
