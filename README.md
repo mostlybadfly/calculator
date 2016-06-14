@@ -1,6 +1,6 @@
-##A calculator app using pure JavaScript
+##A calculator app using JavaScript
 
 
 
 ####Known Bugs
-- The input field should be parsed to calculate the result rather than use eval().
+- Pressing equals immediately after the first operator will evaluate the amount in the textfield against itself
