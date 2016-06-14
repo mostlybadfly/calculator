@@ -1,9 +1,15 @@
 document.addEventListener('DOMContentLoaded', init, false);
-// no DOM logic before init.
-// include a stack to store numbers and ops
+
+var numStack = []
+var opStack = []
+var operation = {
+  '+': function(a,b) { return a + b},
+  '-': function(a,b) { return a - b},
+  '*': function(a,b) { return a * b},
+  '/': function(a,b) { return a / b}
+}
+
   function appendNum() {
-    // this is good for appending the number to the textfield.
-    // needs to add the number clicked to the stack as well
     if (clearOnInput==true) {
       result.value = "";
     }
@@ -12,28 +18,32 @@ document.addEventListener('DOMContentLoaded', init, false);
   }
 
   function performOp() {
-    // this will need to append an operation to the stack vs just the textfield.
-    // op buttons should be deactivated once one is pushed, until after a number
-    // checking below for value, if value push to stack along with op
     if (result.value!='') {
-    alert(result.value);
-    } else {
-      alert("no value in textfield");
+      if (numStack.length == 0) {
+        numStack.push(result.value);
+        opStack.push(this.innerHTML);
+      } else {
+        result.value = operation[opStack.pop()](Number(numStack.pop()), Number(result.value));
+        numStack.push(result.value);
+        opStack.push(this.innerHTML);
+      }
     }
+    clearOnInput = true;
   }
 
   function evalResult() {
-    // needs to be rewriten so that num, op, num are being performed
-    // triggered when a second op or equals is clicked
-    var result = document.getElementById("result");
-    result.value = result.value ? eval(result.value) : '';
+    if (result.value!='') {
+      if (numStack.length==1) {
+        result.value = operation[opStack.pop()](Number(numStack.pop()), Number(result.value));
+      }
+    }
     clearOnInput = true;
   }
 
   function clearBox() {
-    result = document.getElementById("result");
+    numStack = [];
+    opStack = [];
     result.value = "";
-    // needs logic to clear the current result
   }
 
 function init(){
