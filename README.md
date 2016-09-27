@@ -1,5 +1,5 @@
 ##A calculator app using JavaScript
-check it out at [mostlybadfly.com/calculate](http://www.mostlybadfly.com/calculator)
+check it out at [mostlybadfly.com/calculator](http://www.mostlybadfly.com/calculator)
 
 
 
